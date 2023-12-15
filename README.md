@@ -1,4 +1,4 @@
-# Riffusion_Trtion_TensorRT
+# riffusion_triton_onnx
 
 
 ### Inference Speed
