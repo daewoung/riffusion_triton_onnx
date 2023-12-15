@@ -1,0 +1,40 @@
+name : "unet"
+
+#platform : "pytorch_libtorch"
+platform : "onnxruntime_onnx"
+
+max_batch_size : 6
+
+input [
+  {
+    name : "sample__0"
+    data_type : TYPE_FP32
+    dims : [4, -1, -1]
+  },
+  {
+    name : "timesteps__0"
+    data_type : TYPE_FP32
+    dims : [1],
+    reshape : { shape : []}
+  },  
+  {
+    name : "encoder_hidden_states__0"
+    data_type : TYPE_FP32
+    dims : [-1, 768]
+  }
+]
+
+output [
+  {
+    name: "output__0"
+    data_type: TYPE_FP32
+    dims: [4, -1, -1]
+  }
+]
+
+instance_group [
+  {
+    count: 1
+    kind: KIND_GPU
+  }
+]

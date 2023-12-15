@@ -1,0 +1,32 @@
+backend: "python"
+
+name : "text_preprocess"
+
+
+input [
+  {
+    name: "text_input"
+    data_type: TYPE_STRING
+    dims: [-1]
+  },
+  {
+    name: "use_reweighting"
+    data_type: TYPE_INT32
+    dims: [-1]
+  }
+]
+
+output [
+  {
+    name: "output__0"
+    data_type: TYPE_FP16
+    dims: [-1, 768]
+  }
+]
+
+instance_group [
+  {
+    count: 1
+    kind: KIND_GPU
+  }
+]

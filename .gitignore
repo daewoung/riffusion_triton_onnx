@@ -1,0 +1,3 @@
+*.plan
+*.onnx
+models/text_preprocess/hf_cache

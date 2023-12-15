@@ -1,0 +1,28 @@
+name : "vae_decoder"
+
+#platform : "pytorch_libtorch"
+platform : "onnxruntime_onnx" 
+max_batch_size : 4
+
+input [
+  {
+    name : "latent_sample__0" 
+    data_type : TYPE_FP32
+    dims : [4, -1, -1]
+  }
+]
+
+output [
+  {
+    name: "sample__0"
+    data_type: TYPE_FP32
+    dims: [3, -1, -1]
+  }
+]
+
+instance_group [
+  {
+    count: 1
+    kind: KIND_GPU
+  }
+]

@@ -1,0 +1,33 @@
+name : "text_encoder"
+#platform : "pytorch_libtorch"
+platform : "onnxruntime_onnx"
+
+max_batch_size : 1
+
+input [
+  {
+    name : "input_ids"
+    data_type : TYPE_INT32
+    dims : [-1]
+  }
+]
+
+output [
+  {
+    name: "last_hidden_state__0"
+    data_type: TYPE_FP32
+    dims: [-1, 768]
+  },
+  {
+    name: "pooler_output__0"
+    data_type: TYPE_FP32
+    dims: [768]
+  }
+]
+
+instance_group [
+  {
+    count: 1
+    kind: KIND_GPU
+  }
+]

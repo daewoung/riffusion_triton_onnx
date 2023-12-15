@@ -1,0 +1,28 @@
+name : "vae_encoder"
+
+#platform : "pytorch_libtorch"
+platform : "onnxruntime_onnx" 
+max_batch_size : 4
+
+input [
+  {
+    name : "encoder_input__0"
+    data_type : TYPE_FP32
+    dims : [3, 512, 512]
+  }
+]
+
+output [
+  {
+    name: "sampled_tensor__0"
+    data_type: TYPE_FP32
+    dims: [4, -1, -1]
+  }
+]
+
+instance_group [
+  {
+    count: 1
+    kind: KIND_GPU
+  }
+]

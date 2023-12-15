@@ -1,0 +1,86 @@
+backend: "python"
+
+name : "pipeline"
+
+
+input [
+  {
+    name: "start_text"
+    data_type: TYPE_STRING
+    dims: [1]
+  },
+  {
+    name: "start_text_seed"
+    data_type: TYPE_INT32
+    dims: [1]
+  },
+  {
+    name: "start_guidance"
+    data_type: TYPE_FP32
+    dims: [1]
+  },
+
+  {
+    name: "end_text"
+    data_type: TYPE_STRING
+    dims: [1]
+  },
+  {
+    name: "end_text_seed"
+    data_type: TYPE_INT32
+    dims: [1]
+  },
+  {
+    name: "end_guidance"
+    data_type: TYPE_FP32
+    dims: [1]
+  },
+  {
+    name: "negative_prompt"
+    data_type: TYPE_STRING
+    dims: [1]
+  },
+
+  {
+    name: "img_path"
+    data_type: TYPE_STRING
+    dims: [1]
+  }, 
+
+  {
+    name: "alpha"
+    data_type: TYPE_FP32
+    dims: [1]
+  },
+  {
+    name: "num_inference_steps"
+    data_type: TYPE_INT32
+    dims: [1]
+  },
+  {
+    name: "width"
+    data_type: TYPE_INT32
+    dims: [1]
+  },
+  {
+    name: "num_images_per_prompt"
+    data_type: TYPE_INT32
+    dims: [1]
+  }
+
+]
+
+output [
+  {
+    name: "output__0"
+    data_type: TYPE_FP32
+    dims: [3, -1, -1]
+  }
+]
+
+instance_group [
+  {
+    count: 1
+    kind: KIND_GPU
+  }
+]
